@@ -1,14 +1,14 @@
-// === KONFIGURASI EMAILJS (PUNYA LU) ===
-const PUBLIC_KEY = "AzEQalCh8GE2O4VYA"; // MASUKIN PUNYA LU
-const SERVICE_ID = "service_eo2azzb";   // MASUKIN PUNYA LU
-const TEMPLATE_ID = "template_58auaoa"; // MASUKIN PUNYA LU
+
+const PUBLIC_KEY = "AzEQalCh8GE2O4VYA"; 
+const SERVICE_ID = "service_eo2azzb"; 
+const TEMPLATE_ID = "template_58auaoa";
 
 (function(){
     emailjs.init(PUBLIC_KEY);
 })();
 
-// Global Variable (UPDATED TANGGAL 15)
-let finalDate = "Minggu, 15 Februari 2026"; 
+// Global Variable (UPDATED SENIN 16 FEB JAM 13:00)
+let finalDate = "Senin, 16 Februari 2026 • Jam 13:00 WIB"; 
 
 // === NAVIGASI ANTAR HALAMAN ===
 function nextPage(pageId) {
@@ -57,9 +57,10 @@ btnNo.addEventListener('mouseover', moveButton);
 btnNo.addEventListener('touchstart', moveButton);
 btnNo.addEventListener('click', moveButton);
 
-// === PAGE 3: SAVE THE DATE (BISA di Tgl 15) ===
+// === PAGE 3: SAVE THE DATE (BISA) ===
 function setFixedDate() {
-    finalDate = "Minggu, 15 Februari 2026";
+    // Pastikan variabel ini konsisten
+    finalDate = "Senin, 16 Februari 2026 • Jam 13:00 WIB";
     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     nextPage('page5'); // Langsung ke Dresscode
 }
@@ -84,7 +85,8 @@ function checkCustomDate() {
         return;
     }
     const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-    finalDate = pickerDate.toLocaleDateString('id-ID', options);
+    // Kalau dia pilih tanggal lain, jamnya kita kosongin atau anggap fleksibel
+    finalDate = pickerDate.toLocaleDateString('id-ID', options) + " (Jam Fleksibel)";
     nextPage('page5'); // Ke Dresscode
 }
 
@@ -100,11 +102,10 @@ function sendEmail() {
     btn.innerText = "Sending... ⏳";
     btn.disabled = true;
 
-    // Ganti 'Couple Abu' jadi 'Barong' di email juga
     const templateParams = {
         to_name: "Jason",
         from_name: "Gisel",
-        message: `Tanggal Fix: ${finalDate} \nDresscode: Barong Kembaran 🤣`,
+        message: `Tanggal Fix: ${finalDate} \nDresscode: Barong Kembaran`,
         reply_to: "jasonstevanuss11@gmail.com"
     };
 
